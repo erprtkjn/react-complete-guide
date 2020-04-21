@@ -12,7 +12,12 @@ state = {
 }
 
 switchNameHandler = () => {
-  console.log('was clicked!')
+  this.setState({
+    persons: [
+      {name: "Prateek Jain", age: "30"},
+      {name: "Aakansha", age: "28"}
+    ] 
+  })
 }
 
   render() {
