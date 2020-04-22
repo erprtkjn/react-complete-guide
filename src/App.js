@@ -30,6 +30,15 @@ nameChangedHandler = (event) => {
 }
 
   render() {
+    
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    }
+
     return (
       <div className="App">
         <h1>Hi! This is React App</h1>
@@ -42,7 +51,9 @@ nameChangedHandler = (event) => {
           changed={this.nameChangedHandler}>
             My hobby is gin gin.
         </Person>
-        <button onClick={this.switchNameHandler.bind(this, 'Prateek!')}>Switch Name</button>
+        <button 
+          style={style}
+          onClick={this.switchNameHandler.bind(this, 'Prateek!')}>Switch Name</button>
       </div>
     );
   }
