@@ -8,7 +8,8 @@ state = {
   persons: [
     {name: "Prateek", age: "30"},
     {name: "Aakansha", age: "27"}
-  ]
+  ],
+  stateShowPersons: false
 }
 
 switchNameHandler = (newName) => {
@@ -29,6 +30,15 @@ nameChangedHandler = (event) => {
   })
 }
 
+togglePersonHandler = () => {
+  const showPerson = this.state.stateShowPersons;
+  this.setState(
+    {stateShowPersons: !showPerson}
+  );
+
+}
+
+
   render() {
     
     const style = {
@@ -43,17 +53,26 @@ nameChangedHandler = (event) => {
       <div className="App">
         <h1>Hi! This is React App</h1>
         <p>This is actually working!!!</p>
-        <Person name = {this.state.persons[0].name} age={this.state.persons[0].age}/>
-        <Person 
-          name = {this.state.persons[1].name} 
-          age={this.state.persons[1].age}
-          click={this.switchNameHandler.bind(this, 'Prateek Jain')}
-          changed={this.nameChangedHandler}>
-            My hobby is gin gin.
-        </Person>
+        { this.state.stateShowPersons ? 
+          <div>
+            <Person name = {this.state.persons[0].name} age={this.state.persons[0].age}/>
+            <Person 
+              name = {this.state.persons[1].name} 
+              age={this.state.persons[1].age}
+              click={this.switchNameHandler.bind(this, 'Prateek Jain')}
+              changed={this.nameChangedHandler}>
+                My hobby is gin gin.
+            </Person>
+          </div> : null
+  }
         <button 
           style={style}
-          onClick={this.switchNameHandler.bind(this, 'Prateek!')}>Switch Name</button>
+          onClick={this.switchNameHandler.bind(this, 'Prateek!')}>Switch Name
+        </button>
+        <button 
+          style={style}
+          onClick={this.togglePersonHandler}>Toggle Name
+        </button>
       </div>
     );
   }
