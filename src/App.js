@@ -12,35 +12,21 @@ class App extends Component {
     stateShowPersons: false
   }
 
-  switchNameHandler = (newName) => {
-    this.setState({
-      persons: [
-        { name: newName, age: "30" },
-        { name: "Aakansha", age: "28" }
-      ]
-    })
-  }
-
-  nameChangedHandler = (event) => {
-    this.setState({
-      persons: [
-        { name: "Prateek", age: 30 },
-        { name: event.target.value, age: 27 }
-      ]
-    })
-  }
-
   togglePersonHandler = () => {
     const showPerson = this.state.stateShowPersons;
     this.setState(
       { stateShowPersons: !showPerson }
     );
-
   }
 
+  deletePersonHandler = (personIndex) => {
+    const persons = this.state.persons;
+    persons.splice(personIndex, 1);
+    console.log(persons)
+    this.setState({persons: persons});
+  }
 
   render() {
-
     const style = {
       backgroundColor: 'white',
       font: 'inherit',
@@ -54,10 +40,11 @@ class App extends Component {
     if(this.state.stateShowPersons){
       persons = (
         <div>
-          {this.state.persons.map(person => {
+          {this.state.persons.map((person, index) => {
             return <Person 
               name={person.name} 
-              age={person.age} />
+              age={person.age} 
+              click={this.deletePersonHandler.bind(this, index)}/>
           })}
         </div>
       )
@@ -67,11 +54,7 @@ class App extends Component {
       <div className="App">
         <h1>Hi! This is React App</h1>
         <p>This is actually working!!!</p>
-        {persons};
-        <button
-          style={style}
-          onClick={this.switchNameHandler.bind(this, 'Prateek!')}>Switch Name
-        </button>
+        {persons}
         <button
           style={style}
           onClick={this.togglePersonHandler}>Toggle Name
