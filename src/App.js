@@ -7,7 +7,8 @@ class App extends Component {
   state = {
     persons: [
       { id: 1, name: "Prateek", age: "30" },
-      { id: 2, name: "Aakansha", age: "27" }
+      { id: 2, name: "Aakansha", age: "27" },
+      {id:3, name:'Jain', age:"100"}
     ],
     stateShowPersons: false
   }
@@ -67,10 +68,19 @@ class App extends Component {
       style.backgroundColor='red';
     }
 
+    const classes = [];
+
+    if(this.state.persons.length <= 2){
+      classes.push('red');
+    }
+    if(this.state.persons.length <=1){
+      classes.push('bold');
+    }
+
     return (
       <div className="App">
         <h1>Hi! This is React App</h1>
-        <p>This is actually working!!!</p>
+        <p className={classes.join(' ')}>This is actually working!!!</p>
         <button
           style={style}
           onClick={this.togglePersonHandler}>Toggle Name
