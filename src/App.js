@@ -43,7 +43,7 @@ class App extends Component {
   render() {
 
     let persons = null;
-    // let btnClass = [classes.Button];
+    // let btnClass = [classes.Button];prtk
     let btnClass = '';
 
     if(this.state.stateShowPersons){
